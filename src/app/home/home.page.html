@@ -1,37 +1,31 @@
 <ion-header mode="ios" translucent>
-  <ion-toolbar mode="ios">
-    <ion-buttons slot="start">
-      <ion-button>
-        <ion-icon name="add" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+  <ion-toolbar mode="md" color="tertiary">
+    <ion-fab-button size="small" mode="md" slot="start">
+      G
+    </ion-fab-button>
 
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon name="remove" slot="icon-only"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-fab-button size="small" (click)="navigation(ROUTES.SPENDINGS)" color="success" mode="md" slot="end">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content fullscreen>
   <div class="detach">
-    <ion-card >
+    <ion-card mode="md" color="tertiary">
       <ion-card-header>
-        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-        <ion-card-title>Card Title</ion-card-title>
+        <ion-card-subtitle>Carteira do {{user.name}}</ion-card-subtitle>
+        <ion-card-title class="balance">{{ user.balance | currency:'BRL' }}</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
-        Keep close to Nature's heart... and break clear away, once in awhile,
-        and climb a mountain or spend a week in the woods. Wash your spirit
-        clean.
+        esse app tem como objetivo dar o controle ao usuario poder listar os seus gastos mensais e informá-lo sobre sua situação
       </ion-card-content>
     </ion-card>
   </div>
 
   <ion-list class="list">
-    <ion-card button mode="ios">
+    <ion-card button mode="ios" color="success">
       <ion-card-header>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
         <ion-card-title>Card Title</ion-card-title>
@@ -43,7 +37,7 @@
         clean.
       </ion-card-content>
     </ion-card>
-    <ion-card button mode="ios">
+    <ion-card button mode="ios" color="tertiary">
       <ion-card-header>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
         <ion-card-title>Card Title</ion-card-title>
@@ -55,7 +49,7 @@
         clean.
       </ion-card-content>
     </ion-card>
-    <ion-card button mode="ios">
+    <ion-card button mode="ios" color="danger">
       <ion-card-header>
         <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
         <ion-card-title>Card Title</ion-card-title>
