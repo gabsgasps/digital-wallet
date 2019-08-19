@@ -38,9 +38,11 @@ export class SpendingService {
       gender: "M",
       balance: 2000
     };
-    this.$manager
-      .getSpendings()
-      .then(spendings => (this.allSpendings = spendings));
+    this.$manager.getSpendings().then(spendings => {
+      if (spendings) {
+        this.allSpendings = spendings;
+      }
+    });
   }
 
   public get spendings() {
