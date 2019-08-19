@@ -3,7 +3,20 @@
     <ion-buttons slot="start">
       <ion-back-button mode="md"></ion-back-button>
     </ion-buttons>
+    <ion-text>Registration</ion-text>
   </ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen> </ion-content>
+<ion-content fullscreen>
+  <ion-item>
+    <ion-input [formControl]="title" placeholder="Titulo"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input [formControl]="value" inputmode="numeric" placeholder="Valor"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea [formControl]="description" autocapitalize rows="6" placeholder="Descrição"></ion-textarea>
+  </ion-item>
+
+  <ion-button (click)="save()" expand="block">Registrar</ion-button>
+</ion-content>

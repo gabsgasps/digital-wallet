@@ -1,0 +1,10 @@
+<ion-card button mode="ios" [color]="status">
+  <ion-card-header>
+    <ion-card-subtitle>{{ title }}</ion-card-subtitle>
+    <ion-card-title>{{ value | currency: "BRL" }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{ description }}
+  </ion-card-content>
+</ion-card>
