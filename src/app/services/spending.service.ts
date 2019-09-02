@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { SpendingInterface } from "../interfaces/Spending.interface";
 import { StatusEnum } from "../enums/Status.enum";
+import { SpendingInterface } from "../interfaces/Spending.interface";
 import { User } from "../interfaces/User.interface";
 import { SpedingManagerService } from "./spending-manager-service";
 
@@ -8,7 +8,7 @@ import { SpedingManagerService } from "./spending-manager-service";
   providedIn: "root"
 })
 export class SpendingService {
-  limit = 500;
+  limit: number;
   private status = StatusEnum;
   user: User;
 
@@ -43,6 +43,8 @@ export class SpendingService {
         this.allSpendings = spendings;
       }
     });
+
+    this.limit = (this.user.balance * 30) / 100;
   }
 
   public get spendings() {
@@ -74,7 +76,18 @@ export class SpendingService {
     return this.status.OK;
   }
 
+  private setStatus(value: number): StatusEnum {
+    if (value < this.limit) {
+      return this.status.OK;
+    } else if (value > this.limit && value < this.limit * 2) {
+      return this.status.WARNING;
+    } else {
+      return this.status.DANGER;
+    }
+  }
+
   public set registerSpending(spending: SpendingInterface) {
+    spending.status = this.setStatus(spending.value);
     this.allSpendings.unshift(spending);
     this.$manager.spendings = this.allSpendings;
   }
