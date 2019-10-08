@@ -1,15 +1,16 @@
-import { Component, OnInit, ChangeDetectionStrategy } from "@angular/core";
-import { NavController } from "@ionic/angular";
-import { APPLICATIONS_ROUTES } from "../enums/applications-routes.enum";
-import { User } from "../interfaces/User.interface";
-import { SpendingService } from "../services/spending.service";
-import { SpendingInterface } from "../interfaces/Spending.interface";
-import { FormControl } from "@angular/forms";
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { ModalController, NavController } from '@ionic/angular';
+import { SettingsComponent } from '../components/settings/settings.component';
+import { APPLICATIONS_ROUTES } from '../enums/applications-routes.enum';
+import { SpendingInterface } from '../interfaces/Spending.interface';
+import { User } from '../interfaces/User.interface';
+import { SpendingService } from '../services/spending.service';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"],
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePage implements OnInit {
@@ -19,7 +20,8 @@ export class HomePage implements OnInit {
   balance = new FormControl();
   constructor(
     private navCtrl: NavController,
-    private $spending: SpendingService
+    private $spending: SpendingService,
+    private $modal: ModalController
   ) {
     this.user = this.$spending.user;
   }
@@ -39,5 +41,18 @@ export class HomePage implements OnInit {
 
   get currentBalance(): number {
     return this.$spending.currentBalance;
+  }
+
+  async goToSettings() {
+    const modal = await this.$modal.create({
+      component: SettingsComponent,
+      mode: 'ios',
+      backdropDismiss: true,
+      keyboardClose: true,
+      showBackdrop: true,
+      cssClass: ['mode-nubank']
+    });
+
+    modal.present();
   }
 }

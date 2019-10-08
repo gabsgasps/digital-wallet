@@ -1,0 +1,53 @@
+<ion-header mode="ios" translucent>
+  <ion-toolbar mode="md">
+    <ion-buttons slot="end">
+      <ion-button mode="md" (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card button mode="md" (click)="clickable = !clickable">
+    <ion-card-header>
+      <ion-item lines="none" mode="md">
+        <ion-buttons (click)="clickable = !clickable">
+          <ion-button mode="md">
+            <ion-icon
+              mode="ios"
+              slot="icon-only"
+              [name]="clickable ? 'arrow-forward' : 'arrow-down'"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content *ngIf="!clickable">
+      This is content, without any paragraph or header tags, within an
+      ion-card-content element.
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card button mode="md" (click)="clickable2 = !clickable2">
+    <ion-card-header>
+      <ion-item lines="none" mode="md">
+        <ion-buttons (click)="clickable2 = !clickable2">
+          <ion-button mode="md">
+            <ion-icon
+              mode="ios"
+              slot="icon-only"
+              [name]="clickable2 ? 'arrow-forward' : 'arrow-down'"
+            ></ion-icon>
+          </ion-button>
+        </ion-buttons>
+        <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content *ngIf="!clickable2">
+      This is content, without any paragraph or header tags, within an
+      ion-card-content element.
+    </ion-card-content>
+  </ion-card>
+</ion-content>
